@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-html
 data:
   index.html: |-
-    {{ .Values.html.index | indent 4 }}
+{{ .Values.html.index | indent 4 }}
