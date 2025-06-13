@@ -23,6 +23,6 @@ spec:
     spec:
       containers:
         - name: html-container
-          image: nginx:1.25 # replace with your app image
+          image: nginx:1.25.5 # replace with your app image
           ports:
             - containerPort: 80
