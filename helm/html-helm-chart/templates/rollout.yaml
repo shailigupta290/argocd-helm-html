@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: html-app-rollout
+  namespace: default
+spec:
+  replicas: 4
+  strategy:
+    canary:
+      steps:
+        - setWeight: 25
+        - pause: { duration: 60s }
+        - setWeight: 50
+        - pause: { duration: 60s }
+        - setWeight: 100
+  selector:
+    matchLabels:
+      app: html-app
+  template:
+    metadata:
+      labels:
+        app: html-app
+    spec:
+      containers:
+        - name: html-container
+          image: nginx:1.25 # replace with your app image
+          ports:
+            - containerPort: 80
